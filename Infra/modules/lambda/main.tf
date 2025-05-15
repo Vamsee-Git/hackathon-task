@@ -59,7 +59,7 @@ resource "aws_iam_role_policy_attachment" "lambda_exec_role_policy_attachment" {
   policy_arn = aws_iam_policy.dynamodb_policy.arn
 }
 
-resource "aws_lambda_function" ""user_data_function" {
+resource "aws_lambda_function" "user_data_function" {
   function_name = "user_lambda"
   package_type  = "Image"
   image_uri     = var.image_uri
