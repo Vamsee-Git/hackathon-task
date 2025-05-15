@@ -77,7 +77,7 @@ resource "aws_lambda_function" "user_data_function" {
 }
 
 output "lambda_function_arn" {
-  value = aws_lambda_function.user_data_function.arn
+  value = aws_lambda_function.user_data_function.invoke_arn
 }
 
 variable "dynamodb_table" {
