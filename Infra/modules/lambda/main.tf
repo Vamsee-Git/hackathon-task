@@ -34,7 +34,7 @@ resource "aws_iam_policy" "dynamodb_policy" {
 
 resource "aws_iam_policy" "lambda_policy" {
   name        = "lambda_execution_role_policy"
-  description = "Policy to allow Lambda function to be invoked"
+  description = "Policy to allow Lambda function to be invoked and send trace data to X-Ray"
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
@@ -44,10 +44,19 @@ resource "aws_iam_policy" "lambda_policy" {
           "lambda:InvokeFunction"
         ],
         Resource = "arn:aws:lambda:us-west-2:877786395093:function:user_data_function"
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "xray:PutTraceSegments",
+          "xray:PutTelemetryRecords"
+        ],
+        Resource = "*"
       }
     ]
   })
 }
+
 
 resource "aws_iam_role_policy_attachment" "lambda_exec_role_lambda_policy_attachment" {
   role       = aws_iam_role.lambda_exec_role.name
