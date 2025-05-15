@@ -71,7 +71,7 @@ resource "aws_lambda_function" "user_data_function" {
 
   environment {
     variables = {
-      USERS_TABLE = aws_dynamodb_table.users.name
+      USERS_TABLE = var.dynamodb_table
     }
   }
 }
