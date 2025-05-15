@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_exec_role" {
-  name = "lambda_exec_role"
+  name = "lambda_execution_role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
@@ -33,7 +33,7 @@ resource "aws_iam_policy" "dynamodb_policy" {
 
 
 resource "aws_iam_policy" "lambda_policy" {
-  name        = "lambda_policy"
+  name        = "lambda_execution_role_policy"
   description = "Policy to allow Lambda function to be invoked"
   policy = jsonencode({
     Version = "2012-10-17",
