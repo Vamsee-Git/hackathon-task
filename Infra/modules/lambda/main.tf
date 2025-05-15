@@ -63,7 +63,7 @@ resource "aws_lambda_function" "user_data_function" {
   function_name = "user_lambda"
   package_type  = "Image"
   image_uri     = var.image_uri
-  role          = aws_iam_role.lambda_exec.arn
+  role          = aws_iam_role.lambda_exec_role.arn
   timeout       = 10
   tracing_config{
     mode= "Active"
