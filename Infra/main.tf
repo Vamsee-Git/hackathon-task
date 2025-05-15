@@ -17,6 +17,7 @@ module "dynamodb" {
 module "lambda" {
   source = "./modules/lambda"
   dynamodb_table = module.dynamodb.table_name
+  image_uri= var.image_uri
 }
 
 module "api_gateway" {
