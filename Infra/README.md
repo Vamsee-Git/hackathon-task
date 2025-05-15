@@ -25,6 +25,7 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_image_uri"></a> [image\_uri](#input\_image\_uri) | Image uri | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | `"us-west-2"` | no |
 
 ## Outputs
