@@ -29,7 +29,7 @@ resource "aws_apigatewayv2_stage" "default_stage" {
 resource "aws_apigatewayv2_integration" "user_integration" {
   api_id             = aws_apigatewayv2_api.users_api.id
   integration_type   = "AWS_PROXY"
-  integration_uri    = aws_lambda_function.user_lambda.invoke_arn
+  integration_uri    = var.lambda_function_arn
   integration_method = "POST"
 }
 
