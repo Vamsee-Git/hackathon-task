@@ -79,11 +79,11 @@ resource "aws_lambda_function" "user_data_function" {
 output "lambda_function_arn" {
   value = aws_lambda_function.user_data_function.invoke_arn
 }
+
 output "lambda_function_name" {
   value = aws_lambda_function.user_data_function.function_name
 }
 
-aws_lambda_function.user_lambda.function_name
 variable "dynamodb_table" {
   description = "The name of the DynamoDB table"
   type        = string
