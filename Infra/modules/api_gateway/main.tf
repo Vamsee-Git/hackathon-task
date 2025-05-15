@@ -37,13 +37,18 @@ resource "aws_apigatewayv2_integration" "user_integration" {
 resource "aws_lambda_permission" "apigw_permission" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.user_lambda.function_name
+  function_name = var.lambda_function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.users_api.execution_arn}/*/*"
 }
 
 variable "lambda_function_arn" {
   description = "The ARN of the Lambda function"
+  type        = string
+
+
+variable "lambda_function_name" {
+  description = "The name of the Lambda function"
   type        = string
 }
 
