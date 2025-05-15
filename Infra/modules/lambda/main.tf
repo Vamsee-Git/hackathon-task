@@ -58,22 +58,22 @@ resource "aws_iam_role_policy_attachment" "lambda_exec_role_policy_attachment" {
   role       = aws_iam_role.lambda_exec_role.name
   policy_arn = aws_iam_policy.dynamodb_policy.arn
 }
-resource "aws_lambda_function" "user_data_function" {
-  function_name = "user_data_function"
-  handler       = "lambda_function.lambda_handler"
-  runtime       = "python3.8"
-  role          = aws_iam_role.lambda_exec_role.arn
+
+resource "aws_lambda_function" ""user_data_function" {
+  function_name = "user_lambda"
+  package_type  = "Image"
+  image_uri     = var.image_uri
+  role          = aws_iam_role.lambda_exec.arn
   timeout       = 10
   tracing_config{
     mode= "Active"
   }
+
   environment {
     variables = {
-      DYNAMODB_TABLE = var.dynamodb_table
+      USERS_TABLE = aws_dynamodb_table.users.name
     }
   }
-
-  filename = "lambda_function.zip"
 }
 
 output "lambda_function_arn" {
@@ -84,3 +84,9 @@ variable "dynamodb_table" {
   description = "The name of the DynamoDB table"
   type        = string
 }
+
+variable "image_uri" {
+  description = "Image uri"
+  type        = string
+}
+
